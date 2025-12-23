@@ -26,7 +26,7 @@ export default function LandingPage() {
                         Unleash Your <span className="text-gradient">Data's Potential</span>
                     </h1>
                     <p className="hero-subtitle">
-                        Transform raw metrics into actionable business foresight. Secure, fast, and remarkably intuitive.
+                        I specialize in premium web development, focuses on building secure, practical MVPs with clean workflows. Transform raw metrics into actionable foresight.
                     </p>
                     <div className="hero-actions">
                         <Link to="/login" className="btn primary lg">Start Free Trial</Link>
@@ -126,19 +126,19 @@ export default function LandingPage() {
                     </div>
                     <div className="footer-links">
                         <div className="f-col">
-                            <h4>Product</h4>
-                            <span>Features</span>
-                            <span>Security</span>
+                            <h4>Connect</h4>
+                            <a href="https://www.linkedin.com/in/mizan-shaikh-b36607394" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                            <a href="https://www.instagram.com/19.mizan" target="_blank" rel="noopener noreferrer">Instagram</a>
+                            <a href="https://x.com/mizan__shaikh96" target="_blank" rel="noopener noreferrer">Twitter</a>
                         </div>
                         <div className="f-col">
-                            <h4>Company</h4>
-                            <span>About</span>
-                            <span>Privacy</span>
+                            <h4>Contact</h4>
+                            <a href="mailto:shaikhmizan120@gmail.com">Email Me</a>
                         </div>
                     </div>
                 </div>
                 <div className="footer-bottom">
-                    &copy; {new Date().getFullYear()} Nexus Analytics. All rights reserved.
+                    &copy; {new Date().getFullYear()} Mizan Shaikh &bull; Nexus Analytics.
                 </div>
             </footer>
         </div>
