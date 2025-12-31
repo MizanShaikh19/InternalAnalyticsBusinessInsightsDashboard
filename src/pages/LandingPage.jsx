@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function LandingPage() {
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+
     return (
-        <div className="landing-container">
+        <div className={`landing-container ${isMenuOpen ? 'menu-open' : ''}`}>
             {/* Navbar */}
             <nav className="landing-nav">
                 <div className="landing-nav-content container">
@@ -11,9 +13,16 @@ export default function LandingPage() {
                         <span className="logo-icon">📊</span>
                         <span className="logo-text">Nexus Analytics</span>
                     </div>
-                    <div className="nav-links">
-                        <Link to="/login" className="btn sm">Sign In</Link>
-                        <Link to="/login" className="btn primary sm">Get Started</Link>
+
+                    <button className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                        <div className="bar"></div>
+                        <div className="bar"></div>
+                        <div className="bar"></div>
+                    </button>
+
+                    <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
+                        <Link to="/login" className="btn sm" onClick={() => setIsMenuOpen(false)}>Sign In</Link>
+                        <Link to="/login" className="btn primary sm" onClick={() => setIsMenuOpen(false)}>Get Started</Link>
                     </div>
                 </div>
             </nav>
@@ -127,9 +136,9 @@ export default function LandingPage() {
                     <div className="footer-links">
                         <div className="f-col">
                             <h4>Connect</h4>
-                            <a href="https://www.linkedin.com/in/mizan-shaikh-b36607394" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                            <a href="https://www.linkedin.com/in/almizanshaikh1912" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                            <a href="https://github.com/MizanShaikh19" target="_blank" rel="noopener noreferrer">GitHub</a>
                             <a href="https://www.instagram.com/19.mizan" target="_blank" rel="noopener noreferrer">Instagram</a>
-                            <a href="https://x.com/mizan__shaikh96" target="_blank" rel="noopener noreferrer">Twitter</a>
                         </div>
                         <div className="f-col">
                             <h4>Contact</h4>

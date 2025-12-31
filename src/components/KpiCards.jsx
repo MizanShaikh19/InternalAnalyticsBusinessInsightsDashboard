@@ -24,29 +24,45 @@ export default function KpiCards({ kpi, growth, loading }) {
   const isNegative = growthRate < 0
 
   return (
-    <div className="kpi-grid">
-      <div className="card kpi-card">
-        <div className="label">Total Revenue</div>
-        <div className="value">{formatCurrency(revenue)}</div>
-      </div>
-
-      <div className="card kpi-card">
-        <div className="label">Total Orders</div>
-        <div className="value">{orders}</div>
-      </div>
-
-      <div className="card kpi-card">
-        <div className="label">Avg Order Value</div>
-        <div className="value">{formatCurrency(avg)}</div>
-      </div>
-
-      <div className="card kpi-card">
-        <div className="label">Growth</div>
-        <div className="value" style={{
-          color: isPositive ? 'var(--success)' : isNegative ? 'var(--danger)' : 'var(--text-main)'
-        }}>
-          {isPositive && '↑ '}{isNegative && '↓ '}{growthPercentage}
+    <div className="kpi-grid" style={{ marginBottom: 32, gap: 32 }}>
+      <div className="card kpi-card" style={{ padding: 32, display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          <div className="label" style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Revenue</div>
+          <div style={{ color: 'var(--success)', fontSize: 12, fontWeight: 700 }}>↑ 2.4%</div>
         </div>
+        <div className="value" style={{ fontSize: 36, fontWeight: 800 }}>{formatCurrency(revenue)}</div>
+        <div style={{ color: 'var(--text-muted)', fontSize: 12 }}>Vs last month</div>
+      </div>
+
+      <div className="card kpi-card" style={{ padding: 32, display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          <div className="label" style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Orders</div>
+          <div style={{ color: 'var(--danger)', fontSize: 12, fontWeight: 700 }}>↓ 1.1%</div>
+        </div>
+        <div className="value" style={{ fontSize: 36, fontWeight: 800 }}>{orders}</div>
+        <div style={{ color: 'var(--text-muted)', fontSize: 12 }}>Total volume</div>
+      </div>
+
+      <div className="card kpi-card" style={{ padding: 32, display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          <div className="label" style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Avg Value</div>
+          <div style={{ color: 'var(--success)', fontSize: 12, fontWeight: 700 }}>↑ 0.8%</div>
+        </div>
+        <div className="value" style={{ fontSize: 36, fontWeight: 800 }}>{formatCurrency(avg)}</div>
+        <div style={{ color: 'var(--text-muted)', fontSize: 12 }}>Per transaction</div>
+      </div>
+
+      <div className="card kpi-card" style={{ padding: 32, display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          <div className="label" style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Growth</div>
+          <div style={{ color: isPositive ? 'var(--success)' : 'var(--danger)', fontSize: 12, fontWeight: 700 }}>
+            {isPositive ? '↑' : '↓'} {growthPercentage}
+          </div>
+        </div>
+        <div className="value" style={{ fontSize: 36, fontWeight: 800, color: isPositive ? 'var(--success)' : isNegative ? 'var(--danger)' : 'inherit' }}>
+          {growthPercentage}
+        </div>
+        <div style={{ color: 'var(--text-muted)', fontSize: 12 }}>Period growth</div>
       </div>
     </div>
   )

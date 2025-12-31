@@ -81,115 +81,81 @@ export default function Login() {
   const isInvalid = !!validate()
 
   return (
-    <div className="auth-page premium-auth">
-      {/* Back to Home Navigation */}
-      <Link to="/" className="back-home-link">
-        <span className="arrow">←</span> Back to Home
-      </Link>
-
-      <div className="auth-mesh-bg"></div>
+    <div className="auth-page premium-auth container active" style={{ background: '#000' }}>
+      <div className="auth-mesh-bg" style={{ opacity: 0.1 }}></div>
 
       <div className="auth-container">
-        <form onSubmit={handleSubmit} className="auth-card glass-card" aria-labelledby="login-heading">
-          <div className="auth-logo" style={{ marginBottom: 40 }}>
-            <div className="logo-main">
-              <span className="logo-icon">📊</span>
-              <span className="logo-text">Nexus</span>
+        <form onSubmit={handleSubmit} className="glass-card" style={{ background: '#000', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 32, padding: 48 }}>
+          <div className="animation" style={{ '--li': 1 }}>
+            <div className="logo-main" style={{ justifyContent: 'center', marginBottom: 32 }}>
+              <span style={{ fontSize: 32 }}>📊</span>
+              <span style={{ fontSize: 24, fontWeight: 800 }}>Nexus</span>
             </div>
-            <div className="logo-tagline">{isSignUp ? 'Join the future of insight' : 'Sign in to your workspace'}</div>
           </div>
 
-          <h2 id="login-heading" className="sr-only">{isSignUp ? 'Create Account' : 'Sign in'}</h2>
-
-          <div className="form-group">
-            <label className="form-label" htmlFor="email">Email Address</label>
-            <input
-              id="email"
-              autoFocus
-              aria-label="Email"
-              aria-invalid={!!(error && error.toLowerCase().includes('email'))}
-              aria-describedby={error ? 'form-error' : undefined}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              type="email"
-              placeholder="admin@nexus.ai"
-              className="input premium-input"
-            />
+          <div className="animation" style={{ '--li': 2 }}>
+            <h2 style={{ textAlign: 'center', fontSize: 28, fontWeight: 800, marginBottom: 8 }}>{isSignUp ? 'Create Account' : 'Welcome Back'}</h2>
+            <p style={{ textAlign: 'center', color: 'var(--text-muted)', marginBottom: 32 }}>{isSignUp ? 'Start your analytical journey.' : 'Please enter your details.'}</p>
           </div>
 
-          <div className="form-group">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-              <label className="form-label" htmlFor="password" style={{ margin: 0 }}>Password</label>
-              {!isSignUp && (
-                <button type="button" onClick={handlePasswordReset} className="text-link-sm">Forgot?</button>
-              )}
-            </div>
-            <div className="password-input-wrapper">
+          <div className="animation" style={{ '--li': 3 }}>
+            <div className="form-group">
+              <label className="form-label">Email Address</label>
               <input
-                id="password"
-                aria-label="Password"
-                aria-invalid={!!(error && error.toLowerCase().includes('password'))}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                type="email"
+                placeholder="admin@nexus.ai"
+                className="input"
+                style={{ background: '#111', border: 'none', padding: 16, width: '100%' }}
+              />
+            </div>
+          </div>
+
+          <div className="animation" style={{ '--li': 4 }}>
+            <div className="form-group">
+              <label className="form-label">Password</label>
+              <input
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                type={showPassword ? 'text' : 'password'}
+                type="password"
                 placeholder="••••••••"
-                className="input premium-input"
+                className="input"
+                style={{ background: '#111', border: 'none', padding: 16, width: '100%' }}
               />
-              <button
-                type="button"
-                aria-pressed={showPassword}
-                onClick={() => setShowPassword((s) => !s)}
-                className="password-toggle"
-              >
-                {showPassword ? '👁️' : '👁️‍🗨️'}
-              </button>
             </div>
           </div>
 
-          {!isSignUp && (
-            <div className="form-checkbox-row">
-              <label className="checkbox-container">
-                <input type="checkbox" checked={remember} onChange={(e) => setRemember(e.target.checked)} />
-                <span className="checkmark"></span>
-                Keep me signed in
-              </label>
-            </div>
-          )}
+          <div className="animation" style={{ '--li': 5 }}>
+            {error && <div className="auth-alert error-alert">{error}</div>}
+            {info && <div className="auth-alert success-alert">{info}</div>}
 
-          {error && <div id="form-error" role="alert" aria-live="assertive" className="auth-alert error-alert">{error}</div>}
-          {info && <div role="status" aria-live="polite" className="auth-alert success-alert">{info}</div>}
-
-          <button disabled={loading || isInvalid} type="submit" className="btn primary block premium-btn" style={{ width: '100%', marginBottom: 20 }}>
-            {loading ? (isSignUp ? 'Creating Account...' : 'Signing in...') : (isSignUp ? 'Create Nexus Account' : 'Sign In')}
-          </button>
-
-          <div className="auth-divider">
-            <span>or continue with</span>
-          </div>
-
-          <div className="social-auth-placeholder">
-            <button type="button" onClick={handleMagicLink} className="btn block secondary-btn" style={{ width: '100%' }}>
-              Sign in with Magic Link
+            <button disabled={loading || isInvalid} type="submit" className="btn primary" style={{ width: '100%', padding: 16, borderRadius: 999, fontWeight: 700, marginTop: 12 }}>
+              {loading ? 'Processing...' : (isSignUp ? 'Create Account' : 'Sign In')}
             </button>
           </div>
 
-          <div className="auth-switch">
-            <p>
-              {isSignUp ? 'Already using Nexus?' : "Don't have an account?"}
-              <button
-                type="button"
-                onClick={() => setIsSignUp(!isSignUp)}
-                className="text-link"
-              >
-                {isSignUp ? 'Sign in' : 'Create one for free'}
-              </button>
-            </p>
+          <div className="animation" style={{ '--li': 6 }}>
+            <div className="auth-divider" style={{ margin: '32px 0' }}>
+              <span>or</span>
+            </div>
+
+            <button type="button" onClick={handleMagicLink} className="btn" style={{ width: '100%', background: 'transparent', border: '1px solid var(--border)', padding: 16, borderRadius: 999 }}>
+              Magic Link Login
+            </button>
+          </div>
+
+          <div className="animation" style={{ '--li': 7 }}>
+            <div className="auth-switch" style={{ marginTop: 24 }}>
+              <p>
+                {isSignUp ? 'Already have an account?' : "Don't have an account?"}
+                <button type="button" onClick={() => setIsSignUp(!isSignUp)} className="text-link">
+                  {isSignUp ? 'Sign in' : 'Create one'}
+                </button>
+              </p>
+            </div>
           </div>
         </form>
-
-        <p className="auth-security-notice">
-          🔒 SSL Secured • Powered by Nexus Core
-        </p>
       </div>
     </div>
   )

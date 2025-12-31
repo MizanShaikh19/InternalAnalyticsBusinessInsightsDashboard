@@ -18,8 +18,8 @@ export default function TrendChart({ data }) {
   }))
 
   return (
-    <div className="chart-card" style={{ position: 'relative', height: 260, width: '100%' }}>
-      <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
+    <div style={{ width: '100%', minWidth: 0 }}>
+      <ResponsiveContainer width="100%" aspect={2} debounce={300}>
         <LineChart data={chartData} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
           <XAxis

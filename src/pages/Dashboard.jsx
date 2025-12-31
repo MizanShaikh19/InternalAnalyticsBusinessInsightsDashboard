@@ -123,81 +123,62 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="app-container">
-      <header className="app-header">
-        <div className="logo-main" style={{ marginBottom: 0 }}>
-          <span className="logo-icon" style={{ fontSize: 24 }}>📊</span>
-          <span className="logo-text" style={{ fontSize: 20, fontWeight: 800 }}>Nexus</span>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
-          <button onClick={() => setShowAddModal(true)} className="btn primary sm" style={{ borderRadius: 999 }}>+ New Record</button>
-          <ExportButton data={records} filename={`records-${startDate}-to-${endDate}.csv`} />
-          <div className="user-profile">
-            <div className="avatar">
-              {user?.email?.charAt(0).toUpperCase() || 'U'}
-            </div>
-            <div className="user-info">
-              <span className="user-email">{user?.email}</span>
-              <span className="user-role">Admin Account</span>
+    <div className="dashboard-layout">
+      <aside className="sidebar">
+        <div className="nav-item active">🏠</div>
+        <div className="nav-item">📊</div>
+        <div className="nav-item">👤</div>
+        <div className="nav-item">⚙️</div>
+        <button onClick={handleSignOut} className="nav-item" style={{ marginTop: 'auto', border: 'none', background: 'transparent' }}>🚪</button>
+      </aside>
+
+      <main className="main-content">
+        <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 40 }}>
+          <div>
+            <h1 style={{ fontSize: 32, fontWeight: 800, margin: 0 }}>Dashboard</h1>
+            <p style={{ color: 'var(--text-muted)', margin: '4px 0 0 0' }}>Welcome back, {user?.email?.split('@')[0]}</p>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+            <button onClick={() => setShowAddModal(true)} className="btn primary sm" style={{ borderRadius: 999, padding: '12px 24px' }}>+ New Record</button>
+            <div className="user-profile" style={{ background: 'transparent', padding: 0 }}>
+              <div className="avatar" style={{ width: 44, height: 44, fontSize: 16 }}>
+                {user?.email?.charAt(0).toUpperCase() || 'U'}
+              </div>
             </div>
           </div>
-          <button onClick={handleSignOut} className="btn primary sm" style={{ borderRadius: 999 }}>Logout</button>
+        </header>
+
+        <div className="tab-nav">
+          <div className="tab-item active">📈 Monitoring</div>
+          <div className="tab-item">📦 Inventory</div>
+          <div className="tab-item">💬 Support</div>
+          <div className="tab-item">🔍 Search</div>
         </div>
-      </header>
 
-      <main>
-        <section className="card" style={{ padding: 24, marginBottom: 24 }}>
+        <section className="card" style={{ padding: 24, marginBottom: 32, background: 'rgba(255,255,255,0.02)' }}>
           <form onSubmit={handleApply} className="filters">
-            <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'flex-end', width: '100%' }}>
-              <label style={{ display: 'flex', flexDirection: 'column', gap: 4, fontWeight: 500, fontSize: 13 }}>
-                Start Date
-                <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} className="input" />
+            <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', alignItems: 'flex-end', width: '100%' }}>
+              <label style={{ display: 'flex', flexDirection: 'column', gap: 8, fontWeight: 600, fontSize: 13, color: 'var(--text-muted)' }}>
+                START DATE
+                <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} className="input" style={{ background: '#1A1A1A', border: 'none', width: 160 }} />
               </label>
 
-              <label style={{ display: 'flex', flexDirection: 'column', gap: 4, fontWeight: 500, fontSize: 13 }}>
-                End Date
-                <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className="input" />
+              <label style={{ display: 'flex', flexDirection: 'column', gap: 8, fontWeight: 600, fontSize: 13, color: 'var(--text-muted)' }}>
+                END DATE
+                <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className="input" style={{ background: '#1A1A1A', border: 'none', width: 160 }} />
               </label>
 
-              <label style={{ display: 'flex', flexDirection: 'column', gap: 4, fontWeight: 500, fontSize: 13 }}>
-                Category
-                <select value={category} onChange={(e) => setCategory(e.target.value)} className="input">
+              <label style={{ display: 'flex', flexDirection: 'column', gap: 8, fontWeight: 600, fontSize: 13, color: 'var(--text-muted)' }}>
+                CATEGORY
+                <select value={category} onChange={(e) => setCategory(e.target.value)} className="input" style={{ background: '#1A1A1A', border: 'none', width: 160 }}>
                   {categories.map((c) => <option key={c} value={c}>{c}</option>)}
                 </select>
               </label>
 
               <div style={{ display: 'flex', gap: 8, marginLeft: 'auto' }}>
-                <button
-                  type="button"
-                  className="btn sm"
-                  onClick={() => {
-                    const d = new Date(); d.setDate(d.getDate() - 7);
-                    setStartDate(isoDate(d)); setEndDate(isoDate(new Date()))
-                  }}
-                >
-                  7D
-                </button>
-                <button
-                  type="button"
-                  className="btn sm"
-                  onClick={() => {
-                    const d = new Date(); d.setDate(d.getDate() - 30);
-                    setStartDate(isoDate(d)); setEndDate(isoDate(new Date()))
-                  }}
-                >
-                  30D
-                </button>
-                <button
-                  type="button"
-                  className="btn sm"
-                  onClick={() => {
-                    const d = new Date(); d.setMonth(d.getMonth() - 3);
-                    setStartDate(isoDate(d)); setEndDate(isoDate(new Date()))
-                  }}
-                >
-                  3M
-                </button>
-                <button type="submit" className="btn primary sm">Apply</button>
+                <button type="button" className="btn sm" onClick={() => { const d = new Date(); d.setDate(d.getDate() - 7); setStartDate(isoDate(d)); setEndDate(isoDate(new Date())) }}>7D</button>
+                <button type="button" className="btn sm" onClick={() => { const d = new Date(); d.setDate(d.getDate() - 30); setStartDate(isoDate(d)); setEndDate(isoDate(new Date())) }}>30D</button>
+                <button type="submit" className="btn primary sm" style={{ padding: '8px 24px' }}>Apply</button>
               </div>
             </div>
           </form>
@@ -207,19 +188,22 @@ export default function Dashboard() {
 
         {kpiError && <div className="form-error" style={{ marginTop: 12 }}>Error loading KPIs: {kpiError.message}</div>}
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 2fr) minmax(0, 1fr)', gap: 24 }}>
-          <div className="card" style={{ padding: 24 }}>
-            <h3 className="card-title">Revenue Trend</h3>
-            {trendLoading ? <div className="skeleton" style={{ height: 300, width: '100%' }} /> : trendError ? <div style={{ color: 'var(--danger)' }}>Error: {trendError.message}</div> : <TrendChart data={trendData} />}
-            <div style={{ marginTop: 24 }}>
-              <h4 className="card-subtitle">30-Day Forecast</h4>
-              {trendLoading ? <div className="skeleton" style={{ height: 150, width: '100%' }} /> : trendError ? <div style={{ color: 'var(--danger)' }}>Error: {trendError.message}</div> : <ForecastingWidget data={trendData} />}
+        <div className="chart-grid">
+          <div className="card" style={{ padding: 32, minWidth: 0, display: 'flex', flexDirection: 'column' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
+              <h3 className="card-title" style={{ margin: 0 }}>Revenue Trend</h3>
+              <ExportButton data={records} filename={`records-${startDate}-to-${endDate}.csv`} />
+            </div>
+            <div style={{ flex: 1, minHeight: 300 }}>
+              {trendLoading ? <div className="skeleton" style={{ height: 300, width: '100%' }} /> : trendError ? <div style={{ color: 'var(--danger)' }}>Error: {trendError.message}</div> : <TrendChart data={trendData} />}
             </div>
           </div>
 
-          <div className="card" style={{ padding: 24 }}>
-            <h3 className="card-title">Category Distribution</h3>
-            {categoryLoading ? <div className="skeleton" style={{ height: 300, width: '100%' }} /> : <CategoryPieChart data={categoryData} />}
+          <div className="card" style={{ padding: 32, minWidth: 0, display: 'flex', flexDirection: 'column' }}>
+            <h3 className="card-title" style={{ marginBottom: 24 }}>Category Distribution</h3>
+            <div style={{ flex: 1, minHeight: 300 }}>
+              {categoryLoading ? <div className="skeleton" style={{ height: 300, width: '100%' }} /> : <CategoryPieChart data={categoryData} />}
+            </div>
           </div>
         </div>
 

@@ -21,8 +21,8 @@ export default function CategoryPieChart({ data }) {
     const formatCurrency = (val) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(val)
 
     return (
-        <div style={{ position: 'relative', height: 300, width: '100%' }}>
-            <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
+        <div style={{ width: '100%', minWidth: 0 }}>
+            <ResponsiveContainer width="100%" aspect={1} debounce={300}>
                 <PieChart>
                     <Pie
                         data={chartData}
@@ -39,7 +39,13 @@ export default function CategoryPieChart({ data }) {
                     </Pie>
                     <Tooltip
                         formatter={(value) => formatCurrency(value)}
-                        contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: 'var(--shadow-lg)' }}
+                        contentStyle={{
+                            background: '#000',
+                            border: '1px solid rgba(255,255,255,0.1)',
+                            borderRadius: '12px',
+                            boxShadow: 'var(--shadow)'
+                        }}
+                        itemStyle={{ color: 'var(--text-main)' }}
                     />
                     <Legend verticalAlign="bottom" height={36} />
                 </PieChart>

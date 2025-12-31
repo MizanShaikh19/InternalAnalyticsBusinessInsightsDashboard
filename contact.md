@@ -7,7 +7,8 @@ This file contains the core contact details and social media profiles for Mizan 
 - **Location**: Mumbai, Maharashtra, India
 
 ## 🌐 Social Media Profiles
-- **LinkedIn**: [Mizan Shaikh](https://www.linkedin.com/in/mizan-shaikh-b36607394?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
+- **LinkedIn**: [Mizan Shaikh](https://www.linkedin.com/in/almizanshaikh1912)
+- **GitHub**: [MizanShaikh19](https://github.com/MizanShaikh19)
 - **Instagram**: [@19.mizan](https://www.instagram.com/19.mizan)
 - **Twitter / X**: [@mizan__shaikh96](https://x.com/mizan__shaikh96)
 
