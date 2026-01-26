@@ -1,0 +1,20 @@
+# Exclude all meta-folders and scripts from the repository
+skill-creator/
+skills-internal/
+claymorphism-designer-skill/
+claymorphism-designer-skill/
+dark-clay-morphism/
+ai-data-cleaner-design/
+
+# Standard Ignores
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+.env*
+dist/
+build/
+.tmp/
+.cache/
+.vscode/
+.idea/
