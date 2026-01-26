@@ -49,10 +49,10 @@ npm run dev
 
 ## 📂 System Architecture
 
-- `src/pages/`: Obsidian modules for Dashboard, Landing, and Auth.
-- `src/styles.css`: The source of truth for the Lava-Design System.
-- `src/components/`: Tactile UI fragments and premium chart wrappers.
-- `assets/`: 8K high-fidelity 3D visuals and brand assets.
+- `internal-dashboard/src/pages/`: Obsidian modules for Dashboard, Landing, and Auth.
+- `internal-dashboard/src/styles.css`: The source of truth for the Lava-Design System.
+- `internal-dashboard/src/components/`: Tactile UI fragments and premium chart wrappers.
+- `internal-dashboard/src/assets/`: 8K high-fidelity 3D visuals and brand assets.
 
 ---
 
